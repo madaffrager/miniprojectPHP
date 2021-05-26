@@ -24,7 +24,7 @@ echo'hello there '.$_SESSION['nom'];
  
 <form  method="post" enctype="multipart/form-data">
 	<br><br>
-<input type="submit" name="gestion clients" value="gestion clients" /><br>
+<input type="submit" name="clients" value="gestion clients" /><br>
 <br>
 <input type="submit" name="produits" value="gestion produits" /><br>
 <?php 
@@ -35,6 +35,11 @@ include('../db/fetch_product.php');
 fetch_product();
 }
 
+if(isset($_POST["clients"])){
+	
+include('../db/fetch_client.php');
+fetch_client();
+}
 ?>
 
 </form>
