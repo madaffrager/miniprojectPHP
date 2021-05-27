@@ -66,19 +66,9 @@ $sql = "DELETE FROM clients WHERE id=:id";
 $prep=$lien->prepare($sql);
 $prep->execute(array(':id'=>$id));
   echo "<p>New Records deleted succesfully!</p>";
+  $lien=null;
  }
 
- function ajouter_client($nom,$email,$password){
-
- include('connect.php');
-
- 	 $bd = connectMaBasi();
-
-   $sql = "INSERT INTO clients (nom, email, password) VALUES (?,?,?)";
-$stmt= $bd->prepare($sql);
-$stmt->execute([$nom,$email,$password]);
-
-    $bd = null;
- }
+ 
 
 ?>

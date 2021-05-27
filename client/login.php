@@ -1,24 +1,22 @@
-
-
 <!DOCTYPE html>
 
 
 <html>
 <head>
-<title>Admin</title>
+<title>Client</title>
 <meta charset="utf-8" />
-<b>Login Admin</b>
+<b>Login Client</b>
 
 </head>
 <body>
-<form  action="controller.php"method="post" enctype="multipart/form-data">
+<form  action="../admin/controller.php"method="post" enctype="multipart/form-data">
 <fieldset>
 <legend><h3>Vos coordonnées</h3></legend>
 <table>
 <tr>
   
-    <td>Id Admin :</td>
-	<td><input type="text" name="username"required ></td>
+    <td>Login :</td>
+	<td><input type="text" name="email"required ></td>
 </tr>
 <tr>
     <td>Password :</td>
@@ -27,7 +25,7 @@
 <tr>
     
 
-<td><input type="submit" name="envoyer" value="envoyer" /></td>
+<td><input type="submit" name="loginclient" value="envoyer" /></td>
 </tr>
 </table>
 </fieldset>
