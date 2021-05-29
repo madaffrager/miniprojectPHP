@@ -6,7 +6,7 @@ include('../admin/html/header.php');
 
 
 $date=$_GET['idorder'];
-
+ 
 $order=fetch_orderbyid($_SESSION['id']);
 $getAllcarts=fetch_cartpage($_SESSION['id']);
 $adresse=fetch_adressebyadresseid($order['adresseid']);
@@ -22,11 +22,16 @@ $adresse=fetch_adressebyadresseid($order['adresseid']);
 $total=0;
         foreach($getAllcarts as $cart)
         { 
+
           $resultat=fetch_productbyid($cart['productid']);
 $total+=$cart['prix'];
 echo '<p><img src="'.$resultat['image'].'" width="50">   '.$resultat['nom'].'   '.$cart['prix'];
+add_orderdetail($order['id'],$resultat['id'],$cart['qte']);
 }
-   $_SESSION['total']=$total;   ?>
+   $_SESSION['total']=$total; 
+
+    
+     ?>
      
       <p>Total <span class="price" style="color:black"><b><?php echo $total; ?> MAD</b></span></p>
 

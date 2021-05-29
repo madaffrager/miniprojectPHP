@@ -1,10 +1,8 @@
 <?php
 
-
-session_start();
+include('../admin/html/header.php');
 if(isset($_SESSION['id'])){
 
-include('../admin/db/fetch_product.php');
 $client=find_clientbyid($_SESSION['id']);
 $nom=$client['nom'];
 ?>

@@ -15,7 +15,13 @@ $getAllProducts=fetch_producthome();
             </div>
         </header> 
 <br><br><form action="./search.php" method="POST">
-        Recherche : <input type="text" name="produit" required>&nbsp;&nbsp;<input type="submit" name="rechercher" value="Search">
+        Recherche : <input type="text" name="produit" >&nbsp;&nbsp;<br><br><br>Ou par categorie<br><br>
+         <input type="radio" name="produit" value="mobile">&nbsp;mobile&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="produit" value="cuisine">&nbsp;cuisine &nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="produit" value="console">&nbsp;Jeu et entertainement &nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="radio" name="produit" value="electro">&nbsp;Ordinateurs
+       &nbsp;&nbsp;&nbsp;&nbsp;  <input type="radio" name="produit" value="access">&nbsp;Accessoires&nbsp;&nbsp;&nbsp;&nbsp;
+          <input type="submit" name="rechercher" value="Search">
     </form>
         <!-- Section-->
         <section class="py-5">

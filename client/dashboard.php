@@ -14,7 +14,7 @@ echo'hello there '.$_SESSION['nom'];
 
 }
 ?>
-
+<p align="right"><a href="../store/">Aller à la page d'acceuil</a></p>
 <form method="post">
 	<input type="submit" name="logout"value="logout"></form>
 

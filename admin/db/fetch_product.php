@@ -7,7 +7,7 @@ function fetch_produits_name($name)
 
     $bd = connectMaBasi();
 
-    $sql = "SELECT * FROM produit WHERE nom=:nom";
+    $sql = "SELECT * FROM produit WHERE nom like :nom or categorie like :nom";
 
     $prep = $bd->prepare($sql);
 
@@ -133,7 +133,18 @@ $stmt->execute([$productid,$qte,$prix,$clientid]);
 
     $bd = null;
  }
- 
+ function add_orderdetail($orderid,$idproduit,$qte){
+
+
+
+     $bd = connectMaBasi();
+
+   $sql = "INSERT INTO order_detail (orderid, idproduit, qte) VALUES (?,?,?)";
+$stmt= $bd->prepare($sql);
+$stmt->execute([$orderid,$idproduit,$qte]);
+
+    $bd = null;
+ }
 function fetch_cartpage($id){
 $lien=connectMaBasi(); 
 $sql = "select * from cart where clientid=$id";
@@ -193,8 +204,17 @@ $lien=connectMaBasi();
 $sql = "DELETE FROM cart WHERE id=:id";
 $prep=$lien->prepare($sql);
 $prep->execute(array(':id'=>$id));
-  echo "<p>New Records deleted succesfully!</p>";
+  $lien=null;
  }
+
+function supprimer_orderdetailbyid($id){
+$lien=connectMaBasi(); 
+$sql = "DELETE FROM order_detail WHERE orderid=:id";
+$prep=$lien->prepare($sql);
+$prep->execute(array(':id'=>$id));
+  $lien=null;
+ }
+
 function supprimer_cartbyclient($id){
 $lien=connectMaBasi(); 
 $sql = "DELETE FROM cart WHERE clientid=:id";
@@ -240,7 +260,9 @@ echo "<br><br><br><br><p align='right'><a href='add.php'>ajouter un nouveau prod
 while($row=$reponse->fetch()){
 echo "<br><br><br><br>".$row['nom']."<img src='".$row['image']."'width='100'>".$row['descri']." Prix : ".$row['prix']." MAD <a href='../dashboard/modifier_produit.php?idproduct=".$row['id']."'><font color='green'>modifier</font></a>&nbsp;&nbsp;&nbsp;&nbsp;<a href='../dashboard/supprimer_produit.php?idproduct=".$row['id']." '><font color='red'>supprimer</font></a>";
 
- }}
+ }
+$lien=null;
+}
 
 
  function fetch_adresse($id){
@@ -262,7 +284,9 @@ while($row=$reponse->fetch()){
   $adresse=fetch_adressebyadresseid($row['adresseid']);
 echo "<br><br><br><br>ID commande :".$row['id']." adresse : ".$adresse['nom']." ".$adresse['adresse']." ".$adresse['ville']." ".$adresse['zip']." ".$adresse['mobile']." date :".$row['datepu']." Prix : ".$row['prix']." MAD  statut: ".$row['status']."  &nbsp;&nbsp;&nbsp;&nbsp;<a href='supprimer_order.php?idorder=".$row['id']." '><font color='red'>Annuler la commande</font></a>";
 
- }}
+ }
+$lien=null;
+}
 
 
 ?>
