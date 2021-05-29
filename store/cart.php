@@ -67,14 +67,14 @@ $count=fetch_countcartpage($_SESSION['id']);
     <td>Image</td><td>Produit</td> <td>Price</td><td>Qté</td><td>Total</td></tr>
 
  <?php
-
+$total=0;
         foreach($getAllcarts as $cart)
         { 
           $resultat=fetch_productbyid($cart['productid']);
+$total+=$cart['prix'];
+          echo'<tr><td><img src=\''.$resultat['image'].'\' width="100"></td><td>'.$resultat['nom'].'</td><td>'.$resultat['prix'].'</td><td>'.$cart['qte'].'
 
-          echo'<tr><td><img src=\''.$resultat['image'].'\' width="100"></td><td>'.$resultat['nom'].'</td><td>'.$resultat['prix'].'</td><td><form align="center" method="post"><input type="number"   name="qte" value="'.$cart['qte'].'"
-     min="1" max="10">
-                    </td><td>'.$cart['prix'].'</td><td></form><a href="modifycart.php?id='.$cart['id'].'"><font color="red">supprimer</font></a></td></tr>';
+                    </td><td>'.$cart['qte']*$resultat['prix'].' MAD</td><td>&nbsp;<a href="modifycart.php?id='.$cart['id'].'"><font color="red">supprimer</font></a></td></tr>';
 
 
 
@@ -83,24 +83,17 @@ $count=fetch_countcartpage($_SESSION['id']);
 ?>
 </table>
 <br><br>
-<p align="right"><input  name="checkout" value="checkout" type="submit"></form>
-<?php
 
-/*if(isset($_POST["checkout"])){
-  $i=0;
-foreach($getAllcarts as $cart)
-        { 
-         $prix=$cart['prix']/$cart['qte'];
-         $qte=$_POST["".$i.""];
-    update_cart_id($cart['id'],$qte,$prix*$qte);
-    $i++;
-        }
-         @header('Location: checkout.php');        
-         }*/
- 
+<p align="right"><h4><font color="red"><?php echo $total; ?> MAD</font></h4><a href="<?php 
 
+if($total>0){
+    echo 'checkout.php?total='.$total;
+}
+else{
+ echo '#';   
+}
 
+?>">Valider votre achat</a></p>
 
-      } else{header('Location: ../client/login.php');} ?><br><br>
-
+<?php }?>
 </body></html>

@@ -1,10 +1,10 @@
 
 <?php
-session_start();
+
 
 $idproduct=$_GET['product'];
 
-include('../admin/db/fetch_product.php');
+include('../admin/html/header.php');
 
 
 $resultat=fetch_productbyid($idproduct);
@@ -28,10 +28,10 @@ $resultat=fetch_productbyid($idproduct);
 </head>
 <body>
   <?php 
-include('../admin/html/header.php');
+
     ?><div><br><br><br>
 <p><img src="<?php echo$resultat['image']; ?>" width="300"></p>
-<p><h2><?php echo$resultat['nom']; ?></h2></p><br><?php echo$resultat['prix']; ?><br>
+<p><h2><?php echo$resultat['nom']; ?>  <font color="red"><?php echo$resultat['prix']; ?> MAD</font></h2></p><br><br>
  <form align="center" method="post"><input type="number"   name="qte" value="1"
      min="1" max="10">
 
@@ -52,8 +52,13 @@ else{
 $qte=$_POST["qte"];
 $prix=$resultat["prix"]*$qte;
 $clientid=$_SESSION["id"];
+if($resultat=fetch_cartbyorderid($idproduct))
+{
+$qte=$resultat['qte']+1;
+update_cart_id($resultat['id'],$qte,$resultat['prix']);
 
-ajouter_cart($idproduct,$qte,$prix,$clientid);
+}
+else{ajouter_cart($idproduct,$qte,$prix,$clientid);}
 header('location: cart.php');
 }
 

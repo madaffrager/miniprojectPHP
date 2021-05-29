@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <?php 
+session_start();
+include('../admin/db/fetch_product.php');
 if(!isset($_SESSION['id'])){
-$count=fetch_countcartpage($_SESSION['id']);
-   $sess=("<font color='white'><a href=''>Connexion</a></font>");
+
+   $sess=("<font color='white'><a href='../client/login.php'>Connexion</a></font>");
 }
 else{
-$sess=("<font color='white'><a href=''>Mon Compte</a></font>");
+    
+    $count=fetch_countcartpage($_SESSION['id']);
+$sess=("<font color='white'><a href='../client/dashboard.php'>Mon Compte</a></font>");
 }
 
 
@@ -23,6 +27,7 @@ $sess=("<font color='white'><a href=''>Mon Compte</a></font>");
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+ 
     </head>
     <body>    <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <div class="container px-4 px-lg-5">

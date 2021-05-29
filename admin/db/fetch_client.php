@@ -1,7 +1,6 @@
 <?php 
-
-function fetch_loginclient($email, $password){
 include('connect.php');
+function fetch_loginclient($email, $password){
 $lien=connectMaBasi(); 
 $sql = "select * from clients where email=:email and password=:password";
 $prep=$lien->prepare($sql);
@@ -17,7 +16,6 @@ return $prep->fetch();
 
 function update_client_id($idclient, $nom, $email, $password)
 {
-    include('connect.php');
 
     $bd = connectMaBasi();
 
@@ -33,7 +31,6 @@ function update_client_id($idclient, $nom, $email, $password)
 
 
 function fetch_client(){
-include('connect.php');
 $lien=connectMaBasi(); 
 $sql = "select * from clients";
 $reponse=$lien->query($sql);
@@ -46,12 +43,11 @@ echo "<br><br><br><br>".$row['nom']."   ".$row['email']."  ".$row['password']." 
 $lien=null;
 
 }
-function fetch_clientbyid($id){
-include('connect.php');
+function fetch_clientbyid($clientid){
 $lien=connectMaBasi(); 
 $sql = "select * from clients where id=:id";
 $prep=$lien->prepare($sql);
-$prep->execute(array(':id'=>$id));
+$prep->execute(array(':id'=>$clientid));
 $resultat=$prep->fetch();
 return $resultat;
  $lien=null;
@@ -60,7 +56,6 @@ return $resultat;
 
 
  function supprimer_clientbyid($id){
-include('connect.php');
 $lien=connectMaBasi(); 
 $sql = "DELETE FROM clients WHERE id=:id";
 $prep=$lien->prepare($sql);
@@ -69,8 +64,6 @@ $prep->execute(array(':id'=>$id));
  }
 
  function ajouter_client($nom,$email,$password){
-
- include('connect.php');
 
  	 $bd = connectMaBasi();
 
