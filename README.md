@@ -1,0 +1,4 @@
+# lharba
+Ce projet est réalisé au suet de miniprojet PHP SMI6 FSR par ABDENOUR TEGGOUR ET SON BINOME ABDESSAMAD ENNADAM 
+IL RESTE BEAUCOUP D'UPDATES A REALISER PLUS TARD 
+Merci !!
